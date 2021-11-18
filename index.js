@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const FormData = require("form-data");
 const fetch = require("node-fetch");
-const { client_id, redirect_uri, client_secret } = require("./config");
+const { client_id, client_secret } = require("./config");
 
 const app = express();
 
@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 });
 
 app.post("/authenticate", (req, res) => {
-  const { code } = req.body;
+  const { code, redirect_uri } = req.body;
 
   const data = new FormData();
   data.append("client_id", client_id);
